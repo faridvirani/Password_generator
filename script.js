@@ -10,27 +10,20 @@ function writePassword() {
 
 }
 function generatePassword(){
-  //length
-  //input nan
   //condition t nae ho
-  
-  let userinput = prompt("length of at least 8 characters and no more than 128 characters");//userinput
-  
-  let lowerCase = confirm("do you want to include lowercase?");//condition t or F
-  let upperCase = confirm("do you want to include Uppercase?");
-  let numeric = confirm("do you want to include numeric?");
-  let Special = confirm("do you want to include Special Character?");
-  
+  //readme
 
+  let password = "";
+  let randpassword = [];
+  let userinput = prompt("length of at least 8 characters and no more than 128 characters");//userinput>
 
+  if(userinput >= 8 && userinput <= 128 || Number.isInteger(userinput) )
+      { let lowerCase = confirm("do you want to include lowercase?");//condition t or F
+        let upperCase = confirm("do you want to include Uppercase?");
+        let numeric = confirm("do you want to include numeric?");
+        let Special = confirm("do you want to include Special Character?");
 
-  console.log(userinput);
-  
-  console.log(lowerCase);
-  console.log(upperCase);
-  console.log(numeric);
-  console.log(Special);
-
+               
   function randloAlpha(){//random index
     const loAlpha = "abcdefghijklmnopqrstuvwxyz" ;
     return loAlpha[Math.floor(Math.random()*loAlpha.length)]
@@ -47,14 +40,8 @@ function generatePassword(){
     const SCAlpha = "!@#$%^&*_-+=" ;
     return SCAlpha[Math.floor(Math.random()*SCAlpha.length)]
   };
-  console.log(randloAlpha());
-  console.log(randupAlpha());
-  console.log(randNuAlpha());
-  console.log(randSCAlpha());
 
-
-  let password = "";
-  let randpassword = [];
+  
 
   if(lowerCase){//push to array 
     randpassword.push(randloAlpha);
@@ -68,18 +55,23 @@ function generatePassword(){
   if(Special){
     randpassword.push(randSCAlpha);
   }
-  console.log(randpassword);
 
+if(lowerCase || upperCase || numeric || Special)
+{
   for(let i=0;i<userinput;i++){//loop to length
     password += randpassword[Math.floor(Math.random()*randpassword.length)]();
-      
   }
-  return password;//return string
+
 }
+  return password;//return string
+  }
+  else {
+      alert("Not a valid input ")
+       }
+ 
+ 
+ }// Add event listener to generate button
 
-//[randloAlpha(), randNuAlpha()]
-//AA5A888
 
 
-// Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
